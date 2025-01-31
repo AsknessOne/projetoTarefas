@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<h1 class="titulo mx-4">Uma ferramenta prática para o seu planejamento.</h1>
+<h2 class="titulo2 mx-4">Simplicidade que organiza.</h2>
+<hr>
+
+<div class="container mt-4">
+    <div class="row">
+        <!-- Coluna das Tarefas -->
+        <div class="col-md-8">
+            <div class="cont-inde tarefas">
+                <h4>Sua Lista de Tarefas <i class="fa-regular fa-lightbulb fa-beat"></i></h4>
+                {% if tarefas %}
+                {% for tarefa in tarefas %}
+                <div class="card border-dark mb-3">
+                    <div class="card-header nometarefa d-flex justify-content-between align-items-center">
+                        <h5>
+                            {% if tarefa.is_completed %}
+                            <s>{{ tarefa.nome_tarefa.capitalize() }}</s>
+                            {% else %}
+                            {{ tarefa.nome_tarefa.capitalize() }}
+                            {% endif %}
+                        </h5>
+                        <form action="{{ url_for('completar', id=tarefa.id) }}" method="post">
+                            <button type="submit"
+                                class="btn btn-sm {% if tarefa.is_completed %}btn-success{% else %}btn-warning{% endif %}">
+                                {% if tarefa.is_completed %}
+                                <i class="fa-solid fa-check mx-2"></i></i> Finalizada
+                                {% else %}
+                                <i class="fa-regular fa-circle mx-2"></i> Finalizar
+                                {% endif %}
+                            </button>
+                        </form>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text"><strong>Descrição:</strong> {{ tarefa.descricao }}</p>
+                        <p class="card-text"><strong>Data limite:</strong> {{ tarefa.data_limite.strftime('%d/%m/%Y') }}
+                        </p>
+                        <p class="card-text"><strong>Criado em:</strong> {{ tarefa.data_criacao.strftime('%d/%m/%Y
+                            %H:%M') }}</p>
+                        <p class="card-text"><strong>Status: </strong>{% if tarefa.is_completed %} ✅ Concluída {% else
+                            %} ⏳ Pendente {% endif %}</p>
+                        <div class="d-flex justify-content-end">
+                            <button type="button" class="btn btn-danger btn-sm me-1" data-bs-toggle="modal"
+                                data-bs-target="#excluirTarefa{{ tarefa.id }}">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                data-bs-target="#editModal{{ tarefa.id }}">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </button>
+                            <div class="modal fade" id="excluirTarefa{{ tarefa.id }}" tabindex="-1"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Excluir Tarefa</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Você quer realmente excluir essa tarefa? (Essa ação não poderá ser desfeita)
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Cancelar</button>
+                                            <form method="POST" action="{{ url_for('excluirTarefa', id=tarefa.id) }}">
+                                                <button type="submit" class="btn btn-danger">Excluir</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal fade" id="editModal{{ tarefa.id }}" tabindex="-1"
+                                aria-labelledby="editModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Editar Tarefa</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="{{ url_for('editar', id=tarefa.id) }}" method="POST">
+                                                <div class="form-group mb-3">
+                                                    <label for="nome">Nome:</label>
+                                                    <input type="text" name="nome" id="nome" class="form-control"
+                                                        value="{{ tarefa.nome_tarefa }}" required>
+                                                </div>
+                                                <div class="form-group mb-3">
+                                                    <label for="descricao">Descrição:</label>
+                                                    <input type="text" name="descricao" id="descricao"
+                                                        class="form-control" value="{{ tarefa.descricao }}" required>
+                                                </div>
+                                                <div class="form-group mb-3">
+                                                    <label for="data">Data Limite:</label>
+                                                    <input type="date" name="data" id="data" class="form-control"
+                                                        value="{{ tarefa.data_limite.strftime('%Y-%m-%d') }}" required>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Cancelar</button>
+                                                    <button type="submit" class="btn btn-primary">Salvar
+                                                        Alterações</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% else %}
+
+                <div class="sem-tarefas">
+                    <p>Nenhuma tarefa foi cadastrada ainda. <br/> Adicione uma nova tarefa para começar! 📝</p>
+                </div>
+                {% endif %}
+
+            </div>
+        </div>
+        <div class="col-md-4 d-flex justify-content-center align-items-center">
+            <img src="{{ url_for('static', filename='list.png' )}}">
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

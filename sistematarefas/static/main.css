@@ -1,0 +1,76 @@
+
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000; /* Garante que a barra fique acima de outros elementos */
+    color: #FFFFFF;
+}
+
+.msg_alerta{
+    margin-top: 100px;
+}
+.titulo {
+    font-size: 25px;
+}
+
+.titulo2 {
+    font-size: 15px;
+}
+.titulo3 {
+    font-size: 20px;
+
+}
+.nometarefa {
+    background: #C5D3E8;
+    font-size: 18px;
+}
+
+.botaoretorno {
+    border: 50px;
+    background: #FAB12F;
+}
+
+.card-text {
+    font-size: 16px;
+}
+
+.card-body{
+    height: auto;
+    
+}
+
+.cont-inde {
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    padding: 10px;
+    margin: 10px;
+    height: 550px;
+    overflow-y: scroll;
+    
+}
+  
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: end;
+	background-color: #6C9BCF;
+	color: #fff;
+	padding: 10px;
+	
+}
+
+footer p {
+  font-size: 13px;
+}
+
+.sem-tarefas {
+    text-align: center;
+    font-size: 18px;
+    color: #555;
+    margin-top: 20px;
+}

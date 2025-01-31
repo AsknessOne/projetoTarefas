@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="container mt-5">
+    <h2 class="titulo3 mt-5">Facilite sua rotina mantendo suas tarefas sempre ao alcance.</h2>
+    <hr>
+    <div class="container">
+        <a href="/" class="btn btn-sm botaoretorno">Retornar <i class="fa-solid fa-rotate-left"></i></a>
+    </div>
+    <form method="POST" action="" class="border m-5 p-4">
+        {{ formTarefas.csrf_token }}
+        <legend>O que faz parte do seu plano?</legend>
+        <fieldset>
+            
+            <div class="form-group mt-3">
+                {{ formTarefas.nome_tarefa.label(class="form-control-label") }}
+                {{ formTarefas.nome_tarefa(class="form-control") }}
+                {% for error in formTarefas.nome_tarefa.errors %}
+                    <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+            </div>
+
+            
+            <div class="form-group mt-3">
+                {{ formTarefas.descricao.label(class="form-control-label") }}
+                {{ formTarefas.descricao(class="form-control") }}
+                {% for error in formTarefas.descricao.errors %}
+                    <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+            </div>
+
+            
+            <div class="form-group mt-3">
+                {{ formTarefas.data_limite.label(class="form-control-label") }}
+                {{ formTarefas.data_limite(class="form-control") }}
+                {% for error in formTarefas.data_limite.errors %}
+                    <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+            </div>
+
+            
+            <div class="form-group mt-4">
+                <small class="text-muted">
+                    A data de criação será registrada automaticamente no momento em que a tarefa for salva.
+                </small>
+            </div>
+        </fieldset>
+
+        <!-- Botão de Envio -->
+        {{ formTarefas.botao_submit(class="btn btn-success btn-sm mt-5 p-2") }}
+    </form>
+</div>
+
+{% endblock %}
+

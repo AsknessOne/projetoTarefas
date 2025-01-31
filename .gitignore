@@ -1,0 +1,16 @@
+
+venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+instance/
+config.py
+.env
+*.egg-info/
+pip-log.txt
+.DS_Store
+Thumbs.db
+*.log
+*.sqlite3

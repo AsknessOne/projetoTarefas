@@ -8,7 +8,7 @@ Sistema que permite ao usuário criar e gerenciar uma lista de tarefas com funci
 - **Incluir** uma nova tarefa preenchendo um formulário com nome, descrição e data.
 - **Editar** e **excluir** tarefas existentes.
 - **Concluir** tarefas adicionadas. ✔️
-<br/>*Funcionalidades referentes à ordenação ainda não estão disponíveis.*
+
 
 #
 

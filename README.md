@@ -12,12 +12,16 @@ Sistema que permite ao usuário criar e gerenciar uma lista de tarefas com funci
 
 #
 
+### UML | Diagrama de casos de uso
+
+![Diagrama](./sistematarefas/static/diagrama.png)
+
+
 ## ❗ Requisitos | Tecnologias
 
 #### Este projeto utiliza a linguagem Python e o framework Flask para execução. <br/> Também foram utilizados: Bootstrap, Jinja2 e SQLite.<br/>
 
 As dependências do projeto estão listadas no arquivo requirements.txt.
-
 
 
 ## Execução

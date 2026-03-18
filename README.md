@@ -27,5 +27,5 @@ As dependências do projeto estão listadas no arquivo requirements.txt.
 ## Execução
 1. Clone este repositório.
 ```bash
-git clone https://github.com/seu-usuario/seu-repositorio.git
+git clone [https://github.com/seu-usuario/seu-repositorio.git](https://github.com/AsknessOne/projetoTarefas.git)
 
